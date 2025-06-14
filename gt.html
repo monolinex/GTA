@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ballad of Gay Tony | Liberty City Nightlife</title>
+    <link rel="stylesheet" href="styles/tbogt-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Electrolize:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background Video -->
+    <video id="bgVideo" autoplay loop muted>
+        <source src="assets/videos/club-ambient.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Audio Elements -->
+    <audio id="clubMusic" loop>
+        <source src="assets/sounds/club-music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="uiSounds"></audio>
+
+    <!-- Music Controls -->
+    <div class="music-controls neon-glow">
+        <button id="musicToggle" class="neon-btn">
+            <i class="fas fa-music"></i>
+        </button>
+        <div class="volume-container">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+            <span class="volume-label">50%</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="logo-container pulsing-neon">
+                    <img src="assets/images/logos/bgt.png" alt="The Ballad of Gay Tony" class="main-logo">
+                    <!-- <div class="neon-frame"></div> -->
+                </div>
+                <h1 class="neon-title glitch-effect">LIBERTY CITY NIGHTLIFE</h1>
+                <p class="neon-subtitle">Where the party never stops</p>
+                
+                <!-- Interactive Stats Dashboard -->
+                <div class="club-stats">
+                    <div class="stat-card vip-card" data-club="maisonette">
+                        <div class="stat-icon"><i class="fas fa-crown"></i></div>
+                        <div class="stat-number" id="vipCount">0</div>
+                        <div class="stat-label">VIP GUESTS</div>
+                        <div class="neon-bar">
+                            <div class="bar-fill pink-glow" id="vipProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card party-card" data-club="hercules">
+                        <div class="stat-icon"><i class="fas fa-glass-cheers"></i></div>
+                        <div class="stat-number" id="partyCount">0</div>
+                        <div class="stat-label">PARTY LEVEL</div>
+                        <div class="neon-bar">
+                            <div class="bar-fill purple-glow" id="partyProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card money-card" data-club="bahama">
+                        <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-number" id="moneyCount">0</div>
+                        <div class="stat-label">CLUB REVENUE</div>
+                        <div class="neon-bar">
+                            <div class="bar-fill cyan-glow" id="moneyProgress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="story-content neon-glow">
+                <h2 class="neon-cyan glitch-effect">THE STORY OF GAY TONY</h2>
+                <p class="story-description">
+                    Luis Lopez - a former street gangster turned loyal bodyguard - navigates the glittering underworld of Liberty City's nightlife alongside the flamboyant nightclub impresario Gay Tony. When Tony's empire starts crumbling under debts and threats from loan sharks, Luis must use his street smarts and combat skills to protect his boss and their business. Manage elite venues like Maisonette 9, deal with shady characters from the underworld, and survive the explosive collapse of Tony's nightclub empire in this high-octane expansion to GTA IV.
+                </p>
+                <div class="story-buttons">
+                    <button id="playTrailer" class="neon-btn pulse-btn">
+                        <i class="fas fa-play"></i> WATCH OFFICIAL TRAILER
+                    </button>
+                    <button id="exploreClubs" class="neon-btn secondary-btn">
+                        <i class="fas fa-building"></i> EXPLORE CLUBS
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Character Showcase -->
+        <section class="characters-section">
+            <h2 class="section-title neon-pink">MEET THE CREW</h2>
+            <div class="characters-grid">
+                <div class="character-card luis-card" data-character="luis">
+                    <div class="character-frame neon-border">
+                        <img src="assets/images/logos/luis-lopez.jpg" alt="Luis Lopez" class="char-img">
+                        <div class="char-overlay">
+                            <div class="char-info-popup">
+                                <h4>LUIS LOPEZ</h4>
+                                <p>Club Manager & Bodyguard</p>
+                                <div class="char-abilities">
+                                    <div class="ability">Security: <span class="ability-val neon-pink">95%</span></div>
+                                    <div class="ability">Business: <span class="ability-val neon-purple">85%</span></div>
+                                    <div class="ability">Loyalty: <span class="ability-val neon-cyan">100%</span></div>
+                                </div>
+                                <button class="char-btn neon-btn" data-action="manage-club">
+                                    <i class="fas fa-building"></i> MANAGE CLUB
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="char-details">
+                        <h3>LUIS LOPEZ</h3>
+                        <p class="char-role">CLUB MANAGER</p>
+                    </div>
+                </div>
+
+                <div class="character-card tony-card" data-character="tony">
+                    <div class="character-frame neon-border">
+                        <img src="assets/images/logos/gay-tony.jpg" alt="Gay Tony" class="char-img">
+                        <div class="char-overlay">
+                            <div class="char-info-popup">
+                                <h4>GAY TONY</h4>
+                                <p>Nightclub Empire Owner</p>
+                                <div class="char-abilities">
+                                    <div class="ability">Charisma: <span class="ability-val neon-pink">100%</span></div>
+                                    <div class="ability">Network: <span class="ability-val neon-purple">95%</span></div>
+                                    <div class="ability">Style: <span class="ability-val neon-cyan">100%</span></div>
+                                </div>
+                                <button class="char-btn neon-btn" data-action="vip-services">
+                                    <i class="fas fa-star"></i> VIP SERVICES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="char-details">
+                        <h3>GAY TONY</h3>
+                        <p class="char-role">NIGHTCLUB MOGUL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Club Management -->
+        <section class="club-section">
+            <h2 class="section-title neon-cyan">LIBERTY CITY HOTSPOTS</h2>
+            <div class="clubs-grid">
+                <div class="club-card maisonette-card" data-club="maisonette">
+                    <div class="club-display">
+                        <img src="assets/images/logos/club-logos/maisonette9.png" alt="Maisonette 9" class="club-logo">
+                        <div class="club-ambiance">
+                            <div class="disco-ball rotating"></div>
+                            <div class="light-beam beam-1"></div>
+                            <div class="light-beam beam-2"></div>
+                            <div class="light-beam beam-3"></div>
+                        </div>
+                    </div>
+                    <div class="club-info">
+                        <h3>MAISONETTE 9</h3>
+                        <p class="club-type">UPSCALE NIGHTCLUB</p>
+                        <div class="club-features">
+                            <span class="feature-tag">VIP AREA</span>
+                            <span class="feature-tag">CELEBRITY GUESTS</span>
+                            <span class="feature-tag">PREMIUM BAR</span>
+                        </div>
+                        <button class="club-btn neon-btn" data-action="enter-club">
+                            <i class="fas fa-door-open"></i> ENTER CLUB
+                        </button>
+                    </div>
+                </div>
+
+                <div class="club-card hercules-card" data-club="hercules">
+                    <div class="club-display">
+                        <img src="assets/images/logos/club-logos/hercules.png" alt="Hercules" class="club-logo">
+                        <div class="club-ambiance">
+                            <div class="strobe-lights"></div>
+                            <div class="dance-floor pulsing"></div>
+                        </div>
+                    </div>
+                    <div class="club-info">
+                        <h3>HERCULES</h3>
+                        <p class="club-type">EXCLUSIVE VENUE</p>
+                        <div class="club-features">
+                            <span class="feature-tag">DANCE FLOOR</span>
+                            <span class="feature-tag">LIVE DJ</span>
+                            <span class="feature-tag">MEMBERS ONLY</span>
+                        </div>
+                        <button class="club-btn neon-btn" data-action="enter-club">
+                            <i class="fas fa-door-open"></i> ENTER CLUB
+                        </button>
+                    </div>
+                </div>
+
+                <div class="club-card bahama-card" data-club="bahama">
+                    <div class="club-display">
+                        <img src="assets/images/logos/club-logos/bahama-mamas.png" alt="Bahama Mamas" class="club-logo">
+                        <div class="club-ambiance">
+                            <div class="tropical-lights"></div>
+                            <div class="palm-shadows swaying"></div>
+                        </div>
+                    </div>
+                    <div class="club-info">
+                        <h3>BAHAMA MAMAS</h3>
+                        <p class="club-type">TROPICAL PARADISE</p>
+                        <div class="club-features">
+                            <span class="feature-tag">BEACH VIBES</span>
+                            <span class="feature-tag">COCKTAILS</span>
+                            <span class="feature-tag">PARTY CROWD</span>
+                        </div>
+                        <button class="club-btn neon-btn" data-action="enter-club">
+                            <i class="fas fa-door-open"></i> ENTER CLUB
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Mini-Games -->
+        <section class="minigames-section">
+            <h2 class="section-title neon-purple">CLUB ACTIVITIES</h2>
+            <div class="activities-grid">
+                <div class="activity-card dance-card" data-activity="dancing">
+                    <div class="activity-icon pulsing-neon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>DANCE FLOOR</h3>
+                    <p>Show off your moves and impress the crowd</p>
+                    <button class="activity-btn neon-btn" data-game="dance">
+                        <i class="fas fa-play"></i> START DANCING
+                    </button>
+                </div>
+
+                <div class="activity-card vip-card" data-activity="vip">
+                    <div class="activity-icon pulsing-neon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>VIP SERVICES</h3>
+                    <p>Manage celebrity guests and handle requests</p>
+                    <button class="activity-btn neon-btn" data-game="vip">
+                        <i class="fas fa-play"></i> MANAGE VIP
+                    </button>
+                </div>
+
+                <div class="activity-card security-card" data-activity="security">
+                    <div class="activity-icon pulsing-neon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>CLUB SECURITY</h3>
+                    <p>Keep troublemakers out and maintain order</p>
+                    <button class="activity-btn neon-btn" data-game="security">
+                        <i class="fas fa-play"></i> SECURE CLUB
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Notifications -->
+    <div id="notificationArea" class="notification-area"></div>
+
+    <!-- Trailer Modal -->
+    <div id="trailerModal" class="trailer-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>The Ballad of Gay Tony - Official Trailer</h3>
+                <button id="closeTrailer" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-container">
+                <iframe id="trailerVideo" 
+                        width="800" 
+                        height="450" 
+                        src="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer neon-border">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="neon-pink">OFFICIAL RESOURCES</h4>
+                <div class="rockstar-section">
+                    <a href="https://www.rockstargames.com/games/IV" 
+                       class="rockstar-link"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div class="rockstar-logo-container">
+                            <i class="fas fa-external-link-alt rockstar-icon"></i>
+                            <div class="rockstar-text">
+                                <span class="rockstar-title">ROCKSTAR GAMES</span>
+                                <span class="rockstar-subtitle">Official GTA IV Site</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://store.steampowered.com/app/12220/Grand_Theft_Auto_IV_The_Complete_Edition/" 
+                       class="steam-link"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div class="steam-logo-container">
+                            <i class="fab fa-steam steam-icon"></i>
+                            <div class="steam-text">
+                                <span class="steam-title">GET ON STEAM</span>
+                                <span class="steam-subtitle">Complete Edition</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 class="neon-cyan">NAVIGATION</h4>
+                <nav class="footer-nav">
+                    <a href="../index.html" class="nav-link">HOME</a>
+                    <a href="../gta4.html" class="nav-link">GTA IV</a>
+                    <a href="ld.html" class="nav-link">THE LOST AND DAMNED</a>
+                </nav>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Ballad of Gay Tony Experience. Official content &copy; Rockstar Games.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/tbogt-interactive.js"></script>
+</body>
+</html>

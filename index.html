@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official GTA IV Series Portal - Explore Liberty City's Legacy">
+    <title>Grand Theft Auto IV Series | Rockstar Classics</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preload" as="image" href="assets\images\logos\Main_logo.png">
+</head>
+<body>
+    <!-- Audio Elements -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/background-music.mp3" type="audio/mpeg">
+        <source src="assets/sounds/background-music.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="navSound">
+        <source src="assets/sounds/navigation.mp3" type="audio/mpeg">
+        <source src="assets/sounds/navigation.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">GRAND THEFT AUTO</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Loading Liberty City...</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <header class="header">
+            <!-- TODO: REPLACE WITH YOUR MAIN SERIES LOGO -->
+            <!-- Uncomment the line below and add your logo -->
+            <img src="assets\images\logos\Main_logo.png" alt="GTA IV Series Logo" class="main-logo" id="mainLogo">
+            <h1 class="title">Grand Theft Auto IV Series</h1>
+            <p class="subtitle">" Welcome to The Liberty City "</p>
+        </header>
+
+        <!-- Game Cards Grid -->
+        <section class="cards-grid" role="grid" aria-label="GTA IV Series Games">
+            <!-- GTA IV Card -->
+            <article class="game-card" role="gridcell" tabindex="0" data-game="gtaiv">
+                <!-- <a href="gta4.html" class="card-link"></a> -->
+                <div class="card-inner">
+                    <div class="card-front">
+                        <!-- TODO: REPLACE WITH GTA IV LOGO -->
+                        <img src="assets\images\logos\GTA_IV_logo.png" alt="GTA IV" class="game-logo">
+                        <!-- <div class="logo-placeholder">GTA IV</div> -->
+                        <div class="card-content">
+                            <h2>Grand Theft Auto IV</h2>
+                            <p>Follow Niko Bellic's journey as he navigates the dangerous underworld of Liberty City in search of the American Dream.</p>
+                            <span class="release-year">2008</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- The Lost and Damned Card -->
+            <article class="game-card" role="gridcell" tabindex="0" data-game="tlad">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <!-- TODO: REPLACE WITH THE LOST AND DAMNED LOGO -->
+                        <img src="assets\images\logos\L&D.png" alt="The Lost and Damned" class="game-logo">
+                        <!-- <div class="logo-placeholder">TLAD</div> -->
+                        <div class="card-content">
+                            <h2>The Lost and Damned</h2>
+                            <p>Experience Liberty City through the eyes of Johnny Klebitz and The Lost Motorcycle Club in this gritty expansion.</p>
+                            <span class="release-year">2009</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- The Ballad of Gay Tony Card -->
+            <article class="game-card" role="gridcell" tabindex="0" data-game="tbogt">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <!-- TODO: REPLACE WITH THE BALLAD OF GAY TONY LOGO -->
+                        <img src="assets\images\logos\bgt.png" alt="The Ballad of Gay Tony" class="game-logo">
+                        <!-- <div class="logo-placeholder">TBOGT</div> -->
+                        <div class="card-content">
+                            <h2>The Ballad of Gay Tony</h2>
+                            <p>Dive into Liberty City's nightlife scene with Luis Lopez in this high-octane expansion pack.</p>
+                            <span class="release-year">2009</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Music Controls -->
+        <div class="music-controls" aria-label="Audio Controls">
+            <button id="musicToggle" aria-label="Toggle background music" title="Toggle Music">
+                <span class="music-icon">🎵</span>
+                <span class="muted-icon" style="display: none;">🔇</span>
+            </button>
+            <div class="volume-container">
+                <input type="range" 
+                       id="volumeSlider" 
+                       min="0" 
+                       max="1" 
+                       step="0.1" 
+                       value="0.5"
+                       aria-label="Volume control"
+                       title="Volume">
+                <span class="volume-label">50%</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 GTA IV Series Fan Site.</p>
+            <p>Grand Theft Auto is a trademark of Rockstar Games.</p>
+        </footer>
+    </main>
+
+    <script src="scripts/app.js" defer></script>
+</body>
+</html>

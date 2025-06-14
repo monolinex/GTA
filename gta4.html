@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Theft Auto IV | Liberty City Experience</title>
+    <link rel="stylesheet" href="styles/gta4-enhanced.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Audio Elements -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/gta4-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="effectsPlayer"></audio>
+
+    <!-- Music Controls -->
+    <div class="music-controls">
+        <button id="musicToggle" class="control-btn">
+            <i class="fas fa-music"></i>
+        </button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5" class="volume-slider">
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="logo-section">
+                    <img src="assets/images/logos/GTA_IV_logo.png" alt="GTA IV Logo" class="main-logo">
+                    <h1 class="main-title">LIBERTY CITY</h1>
+                    <p class="subtitle">Where every choice has a consequence</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card" data-stat="missions">
+                        <div class="stat-icon"><i class="fas fa-crosshairs"></i></div>
+                        <div class="stat-number" id="missionCount">0</div>
+                        <div class="stat-label">MISSIONS</div>
+                        <div class="stat-bar">
+                            <div class="bar-fill" id="missionProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card" data-stat="friends">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-number" id="friendCount">0</div>
+                        <div class="stat-label">FRIENDS</div>
+                        <div class="stat-bar">
+                            <div class="bar-fill" id="friendProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card" data-stat="weapons">
+                        <div class="stat-icon"><i class="fas fa-skull"></i></div>
+                        <div class="stat-number" id="weaponCount">0</div>
+                        <div class="stat-label">WEAPONS</div>
+                        <div class="stat-bar">
+                            <div class="bar-fill" id="weaponProgress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="story-container">
+                <div class="story-text">
+                    <h2 class="section-title">NIKO BELLIC'S STORY</h2>
+                    <p class="story-paragraph">
+                        In Grand Theft Auto IV, Niko Bellic, an ex-soldier from Eastern Europe, arrives in Liberty City to escape his past and pursue the American Dream. He reunites with his cousin Roman, who initially paints a picture of riches, but Niko soon discovers the situation is more challenging than anticipated.
+                    </p>
+                    <div class="story-buttons">
+                        <button class="gta-btn primary" id="playTrailer">
+                            <i class="fas fa-play"></i>
+                            <span>PLAY TRAILER</span>
+                        </button>
+                        <button class="gta-btn secondary" id="exploreCity">
+                            <i class="fas fa-map"></i>
+                            <span>EXPLORE CITY</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="story-visual">
+                    <div class="character-display">
+                        <img src="assets/images/logos/niko.jpg" alt="Niko Bellic" class="main-character">
+                        <div class="character-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Characters Section with Flip Cards -->
+        <section class="characters-section">
+            <h2 class="section-title">MEET THE CHARACTERS</h2>
+            <div class="characters-grid">
+                <!-- Niko Character Card -->
+                <div class="character-card-flip" data-character="niko">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="character-frame">
+                                <img src="assets/images/logos/niko.jpg" alt="Niko Bellic" class="char-img">
+                            </div>
+                            <div class="char-details">
+                                <h3>NIKO BELLIC</h3>
+                                <p class="char-role">PROTAGONIST</p>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i> Click to learn more
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="char-info-detailed">
+                                <h3>NIKO BELLIC</h3>
+                                <p class="char-description">An Eastern European immigrant seeking redemption in Liberty City. Haunted by his past as a soldier, Niko struggles to find peace while being drawn into the criminal underworld.</p>
+                                <div class="char-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-name">Combat</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 95%"></div>
+                                        </div>
+                                        <span class="stat-val">95%</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-name">Stealth</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 80%"></div>
+                                        </div>
+                                        <span class="stat-val">80%</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-name">Loyalty</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 100%"></div>
+                                        </div>
+                                        <span class="stat-val">100%</span>
+                                    </div>
+                                </div>
+                                <div class="flip-back-indicator">
+                                    <i class="fas fa-undo"></i> Click to go back
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roman Character Card -->
+                <div class="character-card-flip" data-character="roman">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="character-frame">
+                                <img src="assets/images/logos/roman.png" alt="Roman Bellic" class="char-img">
+                            </div>
+                            <div class="char-details">
+                                <h3>ROMAN BELLIC</h3>
+                                <p class="char-role">COUSIN</p>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i> Click to learn more
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="char-info-detailed">
+                                <h3>ROMAN BELLIC</h3>
+                                <p class="char-description">Niko's optimistic cousin who lured him to Liberty City with promises of wealth and success. Despite his gambling problems, Roman remains loyal to family.</p>
+                                <div class="char-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-name">Business</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 60%"></div>
+                                        </div>
+                                        <span class="stat-val">60%</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-name">Optimism</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 100%"></div>
+                                        </div>
+                                        <span class="stat-val">100%</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-name">Luck</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 25%"></div>
+                                        </div>
+                                        <span class="stat-val">25%</span>
+                                    </div>
+                                </div>
+                                <div class="flip-back-indicator">
+                                    <i class="fas fa-undo"></i> Click to go back
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brucie Character Card -->
+                <div class="character-card-flip" data-character="brucie">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="character-frame">
+                                <img src="assets/images/logos/bruice.png" alt="Brucie Kibbutz" class="char-img">
+                            </div>
+                            <div class="char-details">
+                                <h3>BRUCIE KIBBUTZ</h3>
+                                <p class="char-role">ALLY</p>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i> Click to learn more
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="char-info-detailed">
+                                <h3>BRUCIE KIBBUTZ</h3>
+                                <p class="char-description">An eccentric, steroid-fueled gym owner with boundless energy. Brucie becomes one of Niko's most reliable allies despite his over-the-top personality.</p>
+                                <div class="char-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-name">Energy</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 100%"></div>
+                                        </div>
+                                        <span class="stat-val">100%</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-name">Fitness</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 90%"></div>
+                                        </div>
+                                        <span class="stat-val">90%</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-name">Street</span>
+                                        <div class="stat-bar-small">
+                                            <div class="stat-fill" style="width: 75%"></div>
+                                        </div>
+                                        <span class="stat-val">75%</span>
+                                    </div>
+                                </div>
+                                <div class="flip-back-indicator">
+                                    <i class="fas fa-undo"></i> Click to go back
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section with Flip Districts -->
+        <section class="map-section">
+            <h2 class="section-title">EXPLORE LIBERTY CITY</h2>
+            <div class="map-container">
+                <div class="map-display">
+                    <img src="assets/images/logos/map.png" alt="Liberty City Map" class="city-map">
+                    <div class="map-overlay">
+                        <div class="district-hotspot" data-district="algonquin" style="top: 30%; left: 40%;">
+                            <div class="hotspot-dot"></div>
+                            <div class="hotspot-label">ALGONQUIN</div>
+                        </div>
+                        <div class="district-hotspot" data-district="broker" style="top: 60%; left: 70%;">
+                            <div class="hotspot-dot"></div>
+                            <div class="hotspot-label">BROKER</div>
+                        </div>
+                        <div class="district-hotspot" data-district="dukes" style="top: 70%; left: 30%;">
+                            <div class="hotspot-dot"></div>
+                            <div class="hotspot-label">DUKES</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="district-info-flip" id="districtInfo">
+                    <div class="district-inner">
+                        <div class="district-front">
+                            <h3>SELECT A DISTRICT</h3>
+                            <p>Click on any district to learn more about it.</p>
+                            <div class="district-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                        </div>
+                        <div class="district-back">
+                            <h3 id="districtName">DISTRICT INFO</h3>
+                            <p id="districtDesc">District details will appear here.</p>
+                            <div id="districtFeatures" class="district-features"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Mission Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">MISSION TIMELINE</h2>
+            <div class="timeline-container-enhanced">
+                <div class="timeline-background">
+                    <div class="animated-particles"></div>
+                </div>
+                <div class="timeline-track-enhanced">
+                    <!-- Animated Progress Line -->
+                    <div class="progress-line">
+                        <div class="progress-fill-animated" id="timelineProgress"></div>
+                        <div class="progress-glow"></div>
+                    </div>
+                    
+                    <!-- Mission Points -->
+                    <div class="mission-point-enhanced completed" data-mission="arrival" style="left: 15%;">
+                        <div class="point-outer-ring"></div>
+                        <div class="point-inner-core"></div>
+                        <div class="point-pulse"></div>
+                        <div class="mission-info-card">
+                            <div class="mission-icon">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                            <h4>THE BOAT</h4>
+                            <p>Niko arrives in Liberty City</p>
+                            <div class="mission-status completed">
+                                <i class="fas fa-check"></i> COMPLETED
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mission-point-enhanced active" data-mission="roman" style="left: 40%;">
+                        <div class="point-outer-ring"></div>
+                        <div class="point-inner-core"></div>
+                        <div class="point-pulse"></div>
+                        <div class="mission-info-card">
+                            <div class="mission-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4>COUSIN'S BELLIC</h4>
+                            <p>Reunite with Roman</p>
+                            <div class="mission-status active">
+                                <i class="fas fa-play"></i> IN PROGRESS
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mission-point-enhanced" data-mission="empire" style="left: 65%;">
+                        <div class="point-outer-ring"></div>
+                        <div class="point-inner-core"></div>
+                        <div class="point-pulse"></div>
+                        <div class="mission-info-card">
+                            <div class="mission-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4>BUILDING EMPIRE</h4>
+                            <p>Establish criminal network</p>
+                            <div class="mission-status locked">
+                                <i class="fas fa-lock"></i> LOCKED
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mission-point-enhanced" data-mission="finale" style="left: 85%;">
+                        <div class="point-outer-ring"></div>
+                        <div class="point-inner-core"></div>
+                        <div class="point-pulse"></div>
+                        <div class="mission-info-card">
+                            <div class="mission-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h4>ONE LAST THING</h4>
+                            <p>Final confrontation</p>
+                            <div class="mission-status locked">
+                                <i class="fas fa-lock"></i> LOCKED
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weapons Section with Flip Cards -->
+        <section class="weapons-section">
+            <h2 class="section-title">LIBERTY CITY ARSENAL</h2>
+            <div class="weapons-grid">
+                <!-- Pistol Weapon Card -->
+                <div class="weapon-card-flip" data-weapon="pistol">
+                    <div class="weapon-inner">
+                        <div class="weapon-front">
+                            <div class="weapon-display">
+                                <img src="assets/images/weapons/pistol.png" alt="Combat Pistol" class="weapon-img">
+                            </div>
+                            <div class="weapon-info-basic">
+                                <h3>COMBAT PISTOL</h3>
+                                <p class="weapon-type">HANDGUN</p>
+                                <div class="weapon-price">$450</div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i> Click for details
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weapon-back">
+                            <div class="weapon-info-detailed">
+                                <h3>COMBAT PISTOL</h3>
+                                <p class="weapon-description">Standard-issue sidearm perfect for close-quarters combat. Reliable, accurate, and always available when you need it.</p>
+                                <div class="weapon-stats-detailed">
+                                    <div class="weapon-stat">
+                                        <span>Damage</span>
+                                        <div class="weapon-stat-bar">
+                                            <div class="weapon-stat-fill" style="width: 60%"></div>
+                                        </div>
+                                        <span>60%</span>
+                                    </div>
+                                    <div class="weapon-stat">
+                                        <span>Range</span>
+                                        <div class="weapon-stat-bar">
+                                            <div class="weapon-stat-fill" style="width: 70%"></div>
+                                        </div>
+                                        <span>70%</span>
+                                    </div>
+                                    <div class="weapon-stat">
+                                        <span>Accuracy</span>
+                                        <div class="weapon-stat-bar">
+                                            <div class="weapon-stat-fill" style="width: 80%"></div>
+                                        </div>
+                                        <span>80%</span>
+                                    </div>
+                                </div>
+                                <div class="flip-back-indicator">
+                                    <i class="fas fa-undo"></i> Click to go back
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional weapon cards follow the same pattern -->
+                <div class="weapon-card-flip" data-weapon="rifle">
+                    <div class="weapon-inner">
+                        <div class="weapon-front">
+                            <div class="weapon-display">
+                                <img src="assets/images/weapons/rifle.png" alt="Assault Rifle" class="weapon-img">
+                            </div>
+                            <div class="weapon-info-basic">
+                                <h3>ASSAULT RIFLE</h3>
+                                <p class="weapon-type">RIFLE</p>
+                                <div class="weapon-price">$3,500</div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i> Click for details
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weapon-back">
+                            <div class="weapon-info-detailed">
+                                <h3>ASSAULT RIFLE</h3>
+                                <p class="weapon-description">Military-grade automatic weapon with devastating firepower. Essential for serious confrontations with law enforcement.</p>
+                                <div class="weapon-stats-detailed">
+                                    <div class="weapon-stat">
+                                        <span>Damage</span>
+                                        <div class="weapon-stat-bar">
+                                            <div class="weapon-stat-fill" style="width: 85%"></div>
+                                        </div>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="weapon-stat">
+                                        <span>Range</span>
+                                        <div class="weapon-stat-bar">
+                                            <div class="weapon-stat-fill" style="width: 90%"></div>
+                                        </div>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="weapon-stat">
+                                        <span>Accuracy</span>
+                                        <div class="weapon-stat-bar">
+                                            <div class="weapon-stat-fill" style="width: 75%"></div>
+                                        </div>
+                                        <span>75%</span>
+                                    </div>
+                                </div>
+                                <div class="flip-back-indicator">
+                                    <i class="fas fa-undo"></i> Click to go back
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Trailer Modal -->
+    <div id="trailerModal" class="trailer-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Grand Theft Auto IV - Official Trailer</h3>
+                <button id="closeTrailer" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-container">
+                <iframe id="trailerVideo" 
+                        width="800" 
+                        height="450" 
+                        src="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>OFFICIAL RESOURCES</h4>
+                <div class="official-links">
+                    <a href="https://www.rockstargames.com/games/IV" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="official-link">
+                        <span>Official GTA IV Site</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://store.steampowered.com/app/12220/Grand_Theft_Auto_IV_The_Complete_Edition/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="official-link">
+                        <span>Buy on Steam</span>
+                        <i class="fab fa-steam"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>NAVIGATION</h4>
+                <nav class="footer-nav">
+                    <a href="index.html" class="nav-link">HOME</a>
+                    <a href="ld.html" class="nav-link">THE LOST AND DAMNED</a>
+                    <a href="gt.html" class="nav-link">THE BALLAD OF GAY TONY</a>
+                </nav>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Grand Theft Auto IV. Official content &copy; Rockstar Games.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/gta4-enhanced.js"></script>
+</body>
+</html>
