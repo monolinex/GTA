@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lost and Damned | Liberty City Bikers</title>
+    <link rel="stylesheet" href="styles/lost-and-damned.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="image" href="assets/images/logos/tlad-logo.png">
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="bgVideo" autoplay loop muted>
+        <source src="assets/videos/biker-gang.mp4" type="video/mp4">
+    </video>
+
+    <!-- Audio Elements -->
+    <audio id="bikeSound" loop>
+        <source src="assets/sounds/bike-engine.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="gangSound">
+        <source src="assets/sounds/gang-shout.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="uiSound">
+        <source src="assets/sounds/vip-notification.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button id="audioToggle" class="biker-btn">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Hero Section with Logo and Tagline -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <img src="assets/images/logos/L&D.png" alt="The Lost and Damned" class="main-logo">
+                <h1 class="gang-title">THE LOST AND DAMNED</h1>
+                <p class="gang-tagline">Ride or Die with Johnny Klebitz</p>
+                
+                <!-- Story Section -->
+                <div class="story-section neon-glow">
+                    <div class="story-content">
+                        <h2>LIBERTY CITY UNDER SIEGE</h2>
+                        <p class="story-description">
+                            Step into the boots of Johnny Klebitz, Vice President of The Lost MC. 
+                            With President Billy Grey fresh out of rehab and hungry for chaos, 
+                            navigate a crumbling truce with rival gangs while maintaining your 
+                            brotherhood's code. This expansion to GTA IV reveals the biker 
+                            underworld's brutal reality through 30+ missions of loyalty, betrayal, 
+                            and high-octane motorcycle combat.
+                        </p>
+                        <button id="playTrailer" class="biker-btn pulse-btn">
+                            <i class="fas fa-play"></i> WATCH OFFICIAL TRAILER
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gang Stats Dashboard -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card" data-stat="members">
+                    <div class="stat-icon">
+                        <img src="assets/images/ui/skull-icon.png" alt="Members">
+                    </div>
+                    <div class="stat-number" id="memberCount">0</div>
+                    <div class="stat-label">GANG MEMBERS</div>
+                    <div class="stat-bar">
+                        <div class="bar-fill" id="memberProgress"></div>
+                    </div>
+                </div>
+                <div class="stat-card" data-stat="territory">
+                    <div class="stat-icon">
+                        <img src="assets/images/ui/skull-icon.png" alt="Territory">
+                    </div>
+                    <div class="stat-number" id="territoryCount">0</div>
+                    <div class="stat-label">TERRITORY CONTROL</div>
+                    <div class="stat-bar">
+                        <div class="bar-fill" id="territoryProgress"></div>
+                    </div>
+                </div>
+                <div class="stat-card" data-stat="respect">
+                    <div class="stat-icon">
+                        <img src="assets/images/ui/skull-icon.png" alt="Respect">
+                    </div>
+                    <div class="stat-number" id="respectCount">0</div>
+                    <div class="stat-label">RESPECT</div>
+                    <div class="stat-bar">
+                        <div class="bar-fill" id="respectProgress"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">ROAD TO DAMNATION</h2>
+            <div class="timeline-container">
+                <div class="timeline-progress" id="timelineProgress"></div>
+                
+                <!-- Mission Points -->
+                <div class="mission-point" style="left: 10%" data-mission="homecoming">
+                    <div class="point-glow"></div>
+                    <div class="mission-info">
+                        <h3>BILLY'S RETURN</h3>
+                        <p>Welcome back the unstable president</p>
+                        <div class="mission-status completed">Completed</div>
+                    </div>
+                </div>
+                
+                <div class="mission-point" style="left: 30%" data-mission="truce-break">
+                    <div class="point-glow"></div>
+                    <div class="mission-info">
+                        <h3>TRUCE BROKEN</h3>
+                        <p>Angels of Death declare war</p>
+                        <div class="mission-status active">In Progress</div>
+                    </div>
+                </div>
+                
+                <div class="mission-point" style="left: 50%" data-mission="heroin-deal">
+                    <div class="point-glow"></div>
+                    <div class="mission-info">
+                        <h3>HEROIN NIGHTMARE</h3>
+                        <p>Stolen Triad shipment</p>
+                        <div class="mission-status locked">Locked</div>
+                    </div>
+                </div>
+                
+                <div class="mission-point" style="left: 70%" data-mission="prison-break">
+                    <div class="point-glow"></div>
+                    <div class="mission-info">
+                        <h3>PRISON INFERNO</h3>
+                        <p>Break Billy out of jail</p>
+                        <div class="mission-status locked">Locked</div>
+                    </div>
+                </div>
+                
+                <div class="mission-point" style="left: 90%" data-mission="final-showdown">
+                    <div class="point-glow"></div>
+                    <div class="mission-info">
+                        <h3>LAST RIDE</h3>
+                        <p>Final confrontation</p>
+                        <div class="mission-status locked">Locked</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gang Members Showcase -->
+        <section class="members-section">
+            <h2 class="section-title">MEET THE LOST</h2>
+            <div class="members-grid">
+                <div class="member-card" data-member="johnny">
+                    <div class="member-frame leather-frame">
+                        <img src="assets/images/logos/johnny-klebitz.jpg" alt="Johnny Klebitz" class="member-img">
+                        <div class="member-overlay">
+                            <div class="member-info">
+                                <h3>JOHNNY KLEBITZ</h3>
+                                <p>President, The Lost MC</p>
+                                <div class="member-stats">
+                                    <div class="stat-item">Leadership: <span class="stat-val">98%</span></div>
+                                    <div class="stat-item">Combat: <span class="stat-val">90%</span></div>
+                                    <div class="stat-item">Loyalty: <span class="stat-val">100%</span></div>
+                                </div>
+                                <button class="member-btn biker-btn" data-action="call-meeting">
+                                    <i class="fas fa-bullhorn"></i> CALL MEETING
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-card" data-member="billy">
+                    <div class="member-frame leather-frame">
+                        <img src="assets/images/logos/lost-members/billy-grey.jpg" alt="Billy Grey" class="member-img">
+                        <div class="member-overlay">
+                            <div class="member-info">
+                                <h3>BILLY GREY</h3>
+                                <p>Vice President, The Lost MC</p>
+                                <div class="member-stats">
+                                    <div class="stat-item">Aggression: <span class="stat-val">95%</span></div>
+                                    <div class="stat-item">Riding: <span class="stat-val">85%</span></div>
+                                    <div class="stat-item">Loyalty: <span class="stat-val">80%</span></div>
+                                </div>
+                                <button class="member-btn biker-btn" data-action="plan-heist">
+                                    <i class="fas fa-skull-crossbones"></i> PLAN HEIST
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-card" data-member="jim">
+                    <div class="member-frame leather-frame">
+                        <img src="assets/images/logos/lost-members/jim-fitzgerald.jpg" alt="Jim Fitzgerald" class="member-img">
+                        <div class="member-overlay">
+                            <div class="member-info">
+                                <h3>JIM FITZGERALD</h3>
+                                <p>Sergeant-at-Arms, The Lost MC</p>
+                                <div class="member-stats">
+                                    <div class="stat-item">Tactics: <span class="stat-val">90%</span></div>
+                                    <div class="stat-item">Stealth: <span class="stat-val">88%</span></div>
+                                    <div class="stat-item">Loyalty: <span class="stat-val">95%</span></div>
+                                </div>
+                                <button class="member-btn biker-btn" data-action="scout-territory">
+                                    <i class="fas fa-binoculars"></i> SCOUT TERRITORY
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-card" data-member="terry">
+                    <div class="member-frame leather-frame">
+                        <img src="assets/images/logos/lost-members/terry-thorpe.jpg" alt="Terry Thorpe" class="member-img">
+                        <div class="member-overlay">
+                            <div class="member-info">
+                                <h3>TERRY THORPE</h3>
+                                <p>Treasurer, The Lost MC</p>
+                                <div class="member-stats">
+                                    <div class="stat-item">Negotiation: <span class="stat-val">85%</span></div>
+                                    <div class="stat-item">Streetwise: <span class="stat-val">90%</span></div>
+                                    <div class="stat-item">Loyalty: <span class="stat-val">92%</span></div>
+                                </div>
+                                <button class="member-btn biker-btn" data-action="collect-dues">
+                                    <i class="fas fa-money-bill-wave"></i> COLLECT DUES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bikes Showcase -->
+        <section class="bikes-section">
+            <h2 class="section-title">BIKES OF THE LOST</h2>
+            <div class="bikes-grid">
+                <div class="bike-card" data-bike="chopper">
+                    <div class="bike-display">
+                        <img src="assets/images/logos/bikes/chopper.png" alt="Chopper" class="bike-img">
+                    </div>
+                    <div class="bike-info">
+                        <h3>CHOPPER</h3>
+                        <p class="bike-type">CLASSIC AMERICAN</p>
+                        <div class="bike-stats">
+                            <div class="stat-row">Speed: <span class="stat-value">75%</span></div>
+                            <div class="stat-row">Handling: <span class="stat-value">65%</span></div>
+                            <div class="stat-row">Style: <span class="stat-value">90%</span></div>
+                        </div>
+                        <button class="bike-btn biker-btn" data-action="ride-bike">
+                            <i class="fas fa-motorcycle"></i> RIDE NOW
+                        </button>
+                    </div>
+                </div>
+                <div class="bike-card" data-bike="racing">
+                    <div class="bike-display">
+                        <img src="assets/images/logos/bikes/racing-bike.png" alt="Racing Bike" class="bike-img">
+                    </div>
+                    <div class="bike-info">
+                        <h3>RACING BIKE</h3>
+                        <p class="bike-type">SPEED DEMON</p>
+                        <div class="bike-stats">
+                            <div class="stat-row">Speed: <span class="stat-value">95%</span></div>
+                            <div class="stat-row">Handling: <span class="stat-value">85%</span></div>
+                            <div class="stat-row">Style: <span class="stat-value">75%</span></div>
+                        </div>
+                        <button class="bike-btn biker-btn" data-action="ride-bike">
+                            <i class="fas fa-motorcycle"></i> RIDE NOW
+                        </button>
+                    </div>
+                </div>
+                <div class="bike-card" data-bike="custom">
+                    <div class="bike-display">
+                        <img src="assets/images/logos/bikes/custom-bike.png" alt="Custom Bike" class="bike-img">
+                    </div>
+                    <div class="bike-info">
+                        <h3>CUSTOM BIKE</h3>
+                        <p class="bike-type">ONE OF A KIND</p>
+                        <div class="bike-stats">
+                            <div class="stat-row">Speed: <span class="stat-value">80%</span></div>
+                            <div class="stat-row">Handling: <span class="stat-value">75%</span></div>
+                            <div class="stat-row">Style: <span class="stat-value">100%</span></div>
+                        </div>
+                        <button class="bike-btn biker-btn" data-action="ride-bike">
+                            <i class="fas fa-motorcycle"></i> RIDE NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gang Activities -->
+        <section class="activities-section">
+            <h2 class="section-title">GANG ACTIVITIES</h2>
+            <div class="activities-grid">
+                <div class="activity-card" data-activity="rideout">
+                    <div class="activity-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>RIDEOUT</h3>
+                    <p>Lead the gang on a ride through Liberty City</p>
+                    <button class="activity-btn biker-btn" data-game="rideout">
+                        <i class="fas fa-play"></i> START RIDEOUT
+                    </button>
+                </div>
+                <div class="activity-card" data-activity="heist">
+                    <div class="activity-icon">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <h3>HEIST PLANNING</h3>
+                    <p>Organize a daring motorcycle heist</p>
+                    <button class="activity-btn biker-btn" data-game="heist">
+                        <i class="fas fa-play"></i> PLAN HEIST
+                    </button>
+                </div>
+                <div class="activity-card" data-activity="fight">
+                    <div class="activity-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3>GANG WAR</h3>
+                    <p>Defend your turf from rival gangs</p>
+                    <button class="activity-btn biker-btn" data-game="fight">
+                        <i class="fas fa-play"></i> START BATTLE
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Trailer Modal -->
+    <div id="trailerModal" class="trailer-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>The Lost and Damned - Official Trailer</h3>
+                <button id="closeTrailer" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-container">
+                <iframe id="trailerVideo" 
+                        src="https://www.youtube.com/embed/FW2sTQuz6l8?si=um9AW5UkwieSIPev"
+                        frameborder="0" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Area -->
+    <div id="notificationArea" class="notification-area"></div>
+
+    <!-- Footer -->
+    <footer class="footer leather-border">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>OFFICIAL RESOURCES</h4>
+                <div class="official-links">
+                    <a href="https://www.rockstargames.com/games/IV" target="_blank" class="rockstar-link">
+                        <i class="fas fa-gamepad"></i> GTA IV Official Site
+                    </a>
+                    <a href="https://store.steampowered.com/app/12220/Grand_Theft_Auto_IV_The_Complete_Edition/" 
+                       target="_blank" class="steam-link">
+                        <i class="fab fa-steam"></i> Buy on Steam
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>NAVIGATION</h4>
+                <nav class="footer-nav">
+                    <a href="../index.html" class="nav-link">HOME</a>
+                    <a href="../gta4.html" class="nav-link">GTA IV</a>
+                    <a href="gt.html" class="nav-link">The Ballad of Gay Tony</a>
+                </nav>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Lost and Damned Experience. Official content &copy; Rockstar Games.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/lost-and-damned.js"></script>
+</body>
+</html>
