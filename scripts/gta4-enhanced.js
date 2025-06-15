@@ -208,7 +208,7 @@ class GTA4Experience {
             trailerVideo.src = 'https://www.youtube.com/embed/M80K51DosFo?enablejsapi=1&si=caevAjwWCgir8EiX&';
             trailerModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            window.dispatchEvent(newEvent('yt-iframe-api-ready'));
+            window.dispatchEvent(new Event('yt-iframe-api-ready'));
             
             this.playUISound('modal-open');
         }
