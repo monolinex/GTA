@@ -206,10 +206,14 @@ class GTA4Experience {
         if (trailerModal && trailerVideo) {
             // Official GTA IV trailer
             trailerVideo.src = 'https://www.youtube.com/embed/M80K51DosFo?enablejsapi=1&si=caevAjwWCgir8EiX&';
+            // ✅ Notify GTM after iframe inserted
+            if (typeof window.dataLayer !== 'undefined') {
+                window.dataLayer.push({
+                event: 'youtube-iframe-added'
+                });
+            }
             trailerModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            window.dispatchEvent(new Event('yt-iframe-api-ready'));
-            
+            document.body.style.overflow = 'hidden';            
             this.playUISound('modal-open');
         }
     }
