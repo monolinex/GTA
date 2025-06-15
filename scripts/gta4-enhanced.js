@@ -205,7 +205,7 @@ class GTA4Experience {
         
         if (trailerModal && trailerVideo) {
             // Official GTA IV trailer
-            trailerVideo.src = 'https://www.youtube.com/embed/M80K51DosFo?si=caevAjwWCgir8EiX';
+            trailerVideo.src = 'https://www.youtube.com/embed/M80K51DosFo?si=caevAjwWCgir8EiX&enablejsapi=1';
             trailerModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
             
